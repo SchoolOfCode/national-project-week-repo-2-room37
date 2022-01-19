@@ -2,19 +2,23 @@
   "name": "national-project-week-repo-2-room37",
   "version": "0.0.0",
   "private": true,
-  "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node ./bin/www",
+    "dbcreatetable": "node -r dotenv/config ./db/scripts/createTable.js",
+    "dbpopulatetable": "node -r dotenv/config ./db/scripts/populateTable.js",
+    "dev": "nodemon -r dotenv/config "
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv": "^14.2.0",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "pg": "^8.7.1",
+    "env": "^0.0.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
