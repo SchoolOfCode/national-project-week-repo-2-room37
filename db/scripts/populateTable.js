@@ -1,7 +1,7 @@
 import query from "../index.js";
 import data from "../../data.js";
 
-async function populateTable() {
+export async function populateTable() {
   for (let i = 0; i < data.length; i++) {
     const { title, date, repo, status } = data[i];
     const res = await query(
@@ -9,7 +9,8 @@ async function populateTable() {
       [title, date, repo, status]
     );
     console.log("Table populated", res);
+    return res;
   }
 }
 
-populateTable();
+//populateTable();

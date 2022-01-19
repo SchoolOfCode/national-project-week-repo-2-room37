@@ -1,4 +1,8 @@
 import express from "express";
+import { createTable } from "./db/scripts/createTable.js";
+import { populateTable } from "./db/scripts/populateTable.js";
+import { getTable } from "./db/scripts/getTable.js";
+import "dotenv/config";
 
 //import router from express.Router();//
 const app = express();
@@ -30,6 +34,11 @@ app.get("/", async (req, res) => {
 // 2. CREATE TABLE
 app.post("/", async (req, res) => {
   const response = await createTable(req.body);
+  res.json(response);
+});
+
+app.post("/", async (req, res) => {
+  const response = await populateTable(req.body);
   res.json(response);
 });
 
