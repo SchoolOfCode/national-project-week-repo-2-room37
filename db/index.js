@@ -3,7 +3,7 @@ import pg from "pg";
 // import { databaseHost, databaseName, password, username } from "../config.js";
 
 const pool = new pg.Pool({
-  connectionString: process.env.PGSTRING,
+  connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false },
 });
 
