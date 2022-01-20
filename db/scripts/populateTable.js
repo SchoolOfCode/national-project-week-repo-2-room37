@@ -9,8 +9,7 @@ export async function populateTable() {
       [title, date, repo, status]
     );
     console.log("Table populated", res);
-    return res;
   }
 }
 
-//populateTable();
+populateTable();
