@@ -3,6 +3,7 @@ import { createTable } from "./db/scripts/createTable.js";
 import { populateTable } from "./db/scripts/populateTable.js";
 import { getTable } from "./db/scripts/getTable.js";
 import "dotenv/config";
+import { getStatus, updateTask } from "./db/scripts/getStatus.js";
 
 //import router from express.Router();//
 const app = express();
@@ -42,10 +43,21 @@ app.post("/", async (req, res) => {
   res.json(response);
 });
 
-// 3. REPLACE ITEM IN THE TABLE
-app.put("/:id", async (req, res) => {
-  const response = await replaceItem(req.body, req.params.id);
-  res.json(response);
+// 3. TOGGLE THE STATUS IN THE TABLE
+app.patch("/:id", async (req, res) => {
+  let id = req.params.id
+  const responseRows = await getStatus(id);
+  const task = responseRows[0];
+  task.status = !task.status;
+  // [...data.slice(0,0), {...data[0], status: !(data[0].status) }];
+  // //data[0].status = !(data[0].status)
+  // console.log('This is the status ' + data[0].status);
+  console.log(task);
+
+// just before returning the data, we need to update it in the database
+  await updateTask(id, task)
+
+  res.json(task);
 });
 
 // 4. DELETE ITEM IN THE TABLE
