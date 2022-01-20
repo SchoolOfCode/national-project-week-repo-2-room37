@@ -12,4 +12,4 @@ export async function populateTable() {
   }
 }
 
-populateTable();
+// populateTable();
