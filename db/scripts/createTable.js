@@ -9,4 +9,4 @@ export async function createTable() {
   return response;
 }
 
-//createTable();
+createTable();
